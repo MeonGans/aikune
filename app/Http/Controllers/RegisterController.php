@@ -62,7 +62,7 @@ class RegisterController extends Controller
     {
         if ($request->email != "" and $request->name != "")  {
             $user = User::query()->find(Auth::user()->id)->update(['email' => $request->email, 'telegram' => $request->telegram]);
-            Survey::query()->where('device_id', $user->device_id)->update(['name' => $request->name]);
+            Survey::query()->where('device_id', $request->device_id)->update(['name' => $request->name]);
         }
 //            if ($request->new_password == $request->re_password) {
 //                User::query()->find(Auth::user()->id)->update(['password' => $request->new_password]);
