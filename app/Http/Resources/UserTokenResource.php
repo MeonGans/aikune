@@ -17,7 +17,7 @@ class UserTokenResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'token' => $this->createToken('Frame')->accessToken,
+            'token' => $this->createToken('Aikune_' . $this->survey->name)->accessToken,
             'name' => $this->survey->name,
         ];
     }
