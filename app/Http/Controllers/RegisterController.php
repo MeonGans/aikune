@@ -27,9 +27,9 @@ class RegisterController extends Controller
 
         $request['password'] = Hash::make($request['password']);
         $user = User::query()->create($request->toArray());
-//        return new UserResource($user);
+        return new UserResource($user);
 
-        return new UserTokenResource($user);
+//        return new UserTokenResource($user);
     }
     public function login(Request $request)
     {
@@ -58,18 +58,17 @@ class RegisterController extends Controller
         return new UserResource(Auth::user());
     }
 
-//    public function change(Request $request)
-//    {
-//        if ($request->email != "") {
-//            User::query()->find(Auth::user()->id)->update(['email' => $request->email]);
-//        }
-//        if (Hash::check($request->old_password, Auth::user()->password)) {
+    public function change(Request $request)
+    {
+        if ($request->email != "" and $request->name != "")  {
+            $user = User::query()->find(Auth::user()->id)->update(['email' => $request->email, 'telegram' => $request->telegram]);
+            Survey::query()->where('device_id', $user->device_id)->update(['name' => $request->name]);
+        }
 //            if ($request->new_password == $request->re_password) {
 //                User::query()->find(Auth::user()->id)->update(['password' => $request->new_password]);
 //            }
-//        }
 //        $request['password'] = Hash::make($request['password']);
-//        return new UserResource(Auth::user());
-//    }
+        return new UserResource(Auth::user());
+    }
 
 }
