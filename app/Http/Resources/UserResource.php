@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'device_id' => $this->device_id,
             'name' => $this->survey->name,
             'telegram' => $this->telegram,
+            'email' => $this->email,
         ];
     }
 }
