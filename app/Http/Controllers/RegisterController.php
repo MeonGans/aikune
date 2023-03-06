@@ -27,7 +27,9 @@ class RegisterController extends Controller
 
         $request['password'] = Hash::make($request['password']);
         $user = User::query()->create($request->toArray());
-        return new UserResource($user);
+//        return new UserResource($user);
+
+        return new UserTokenResource($user);
     }
     public function login(Request $request)
     {
