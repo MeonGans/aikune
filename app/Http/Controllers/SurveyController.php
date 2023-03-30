@@ -6,7 +6,6 @@ use App\Http\Resources\SurveyCollection;
 use App\Http\Resources\SurveyResource;
 use Illuminate\Http\Request;
 use App\Models\Survey;
-use function MongoDB\BSON\toJSON;
 
 class SurveyController extends Controller
 {
@@ -39,6 +38,11 @@ class SurveyController extends Controller
 //        Если нет - создаём новую запись учитывая переменные $step $value $device_id
         // Если есть - обновляем существующую запись, а точнее ячейку $step и меняем значение на $value
 
+        if($request->step == 'name') {
+            $request->validate([
+                'value' => 'required|min:2|max:150',
+            ]);
+        }
         $survey = Survey::query()->updateOrCreate(
             ['device_id' => $request->device_id],
             [$request->step => $request->value],
