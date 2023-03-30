@@ -39,9 +39,9 @@ class SurveyController extends Controller
         // Если есть - обновляем существующую запись, а точнее ячейку $step и меняем значение на $value
 
         if($request->step == 'name') {
-            $request->validate([
-                'value' => 'required|min:2|max:150',
-            ]);
+            if($request->value == null or mb_strlen($request->value) < 3) {
+                return response('Ошибка валидации!', 422);
+            }
         }
         $survey = Survey::query()->updateOrCreate(
             ['device_id' => $request->device_id],
