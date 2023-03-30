@@ -6,6 +6,7 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\UserTokenResource;
 use App\Models\Survey;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class RegisterController extends Controller
         ]);
 
         if($validator->fails()){
-            return $validator->errors();
+            return \response('Ошибка', 422);
         }
 
         $request['password'] = Hash::make($request['password']);
@@ -35,7 +36,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|confirmed|string|min:4',
+            'password' => 'required|string|min:4',
         ]);
         if ($validator->fails())
         {
