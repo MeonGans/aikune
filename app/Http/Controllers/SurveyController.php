@@ -32,7 +32,7 @@ class SurveyController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request): SurveyResource
+    public function store(Request $request)
     {
         // Проверяем есть ли запись с таким device_id.
 //        Если нет - создаём новую запись учитывая переменные $step $value $device_id
