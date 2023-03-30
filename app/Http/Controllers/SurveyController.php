@@ -39,7 +39,7 @@ class SurveyController extends Controller
         // Если есть - обновляем существующую запись, а точнее ячейку $step и меняем значение на $value
 
         if($request->step == 'name') {
-            if($request->value == null or mb_strlen($request->value) < 3) {
+            if($request->value == null or mb_strlen($request->value) < 2) {
                 return response('Ошибка валидации!', 422);
             }
         }
@@ -59,11 +59,16 @@ class SurveyController extends Controller
         return new SurveyResource($survey);
     }
 
-    public function info(Request $request): SurveyResource
+    public function info(Request $request)
     {
         // Проверяем есть ли запись с таким device_id.
 //        Если нет - создаём новую запись учитывая переменные $step $value $device_id
         // Если есть - обновляем существующую запись, а точнее ячейку $step и меняем значение на $value
+
+
+            if($request->age == "" or $request->weight == "" or $request->height == "") {
+                return response('Ошибка валидации!', 422);
+            }
 
         $survey = Survey::query()->updateOrCreate(
             ['device_id' => $request->device_id],
