@@ -40,7 +40,7 @@ class RegisterController extends Controller
         ]);
         if ($validator->fails())
         {
-            return $validator->errors();
+            return response('Ошибка', 401);
         }
         $user = User::query()->where('email', $request->email)->first();
         if ($user) {
