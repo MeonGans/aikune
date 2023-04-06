@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Jenssegers\Date\Date;
 
 class LessonCloseResource extends JsonResource
 {
@@ -21,6 +22,7 @@ class LessonCloseResource extends JsonResource
             'description' => $this->description_ru,
             'img_small' => 'https://api.aikune.xyz/small_black/' . $this->id . '.png',
             'duration' => $this->duration . 'мин',
+            'opening_at' => $this->opening_at,
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Jenssegers\Date\Date;
 
 class LessonCloseCollection extends ResourceCollection
 {
@@ -15,6 +16,11 @@ class LessonCloseCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection;
+        $id_first = $this->collection->first()->id;
+        return $this->collection->map(function ($item) use ($id_first){
+            $add_days = $item->id - $id_first;
+            $item->opening_at = Date::now()->add($add_days . ' day')->format('d.m');
+            return $item;
+        });
     }
 }
