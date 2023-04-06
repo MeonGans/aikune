@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\LessonCloseCollection;
 use App\Http\Resources\LessonOpenCollection;
+use App\Http\Resources\LessonOpenResource;
 use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,11 +45,11 @@ class LessonController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Lesson  $lesson
-     * @return \Illuminate\Http\Response
+     * @return LessonOpenResource
      */
     public function show(Lesson $lesson)
     {
-        //
+        return new LessonOpenResource($lesson);
     }
 
     /**
