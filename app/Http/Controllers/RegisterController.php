@@ -22,8 +22,8 @@ class RegisterController extends Controller
             'password' => 'required|confirmed|min:4',
         ]);
 
-        if($validator->fails()){
-            return \response('Ошибка', 422);
+        if ($validator->fails()) {
+            return \response('Error', 422);
         }
 
         $request['password'] = Hash::make($request['password']);
@@ -32,14 +32,14 @@ class RegisterController extends Controller
 
 //        return new UserTokenResource($user);
     }
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:4',
         ]);
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return response('Ошибка', 401);
         }
         $user = User::query()->where('email', $request->email)->first();
@@ -61,7 +61,7 @@ class RegisterController extends Controller
 
     public function change(Request $request)
     {
-        if ($request->email != "" and $request->name != "")  {
+        if ($request->email != "" and $request->name != "") {
             $user = User::query()->find(Auth::user()->id)->update(['email' => $request->email, 'telegram' => $request->telegram]);
             Survey::query()->where('device_id', $request->device_id)->update(['name' => $request->name]);
         }

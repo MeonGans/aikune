@@ -38,4 +38,9 @@ class User extends Authenticatable
         return $this->hasOne(Survey::class, 'device_id', 'device_id');
     }
 
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class)->withTimestamps();
+    }
+
 }

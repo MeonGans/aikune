@@ -30,4 +30,6 @@ Route::post('login', [\App\Http\Controllers\RegisterController::class, 'login'])
 Route::middleware('auth:api')->group( function () {
     Route::get('me', [\App\Http\Controllers\RegisterController::class, 'user']);
     Route::post('change', [\App\Http\Controllers\RegisterController::class, 'change']);
+    Route::get('lesson_open', [\App\Http\Controllers\LessonController::class, 'indexOpen']);
+    Route::get('lesson_close', [\App\Http\Controllers\LessonController::class, 'indexClose']);
 });
