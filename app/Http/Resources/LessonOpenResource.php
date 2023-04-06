@@ -22,6 +22,7 @@ class LessonOpenResource extends JsonResource
             'img_small' => 'https://api.aikune.xyz/small_color/' . $this->id . '.png',
             'img_big' => 'https://api.aikune.xyz/big/' . $this->id . '.png',
             'video_url' => 'https://api.aikune.xyz/video/' . $this->video_url . '.mp4',
+            'duration' => $this->duration . 'мин',
         ];
     }
 }
