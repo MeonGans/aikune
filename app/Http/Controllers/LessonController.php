@@ -68,7 +68,7 @@ class LessonController extends Controller
             default:
                 break;
         }
-        return $request->value;
+        return ['lesson_id' => $lesson->id];
     }
 
     //Фиксация просмотра лекции
