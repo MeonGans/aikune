@@ -79,6 +79,8 @@ class LessonController extends Controller
         if(!$check->count()) {
             Auth::user()->lessons()->attach([$lesson_id]);
         }
+
+        return ['lesson_id' => $lesson_id];
     }
     /**
      * Update the specified resource in storage.
