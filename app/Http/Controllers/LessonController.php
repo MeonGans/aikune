@@ -127,8 +127,8 @@ class LessonController extends Controller
                 $last_open_lesson_id = $id_last_lesson;
             }
         } else {
-            //Если последняя лекция не найдена, значит даём доступ только к первой лекции.
-            $last_open_lesson_id = 1;
+            //Если последняя лекция не найдена, значит даём доступ только ко второй лекции (первая просто инструкция)
+            $last_open_lesson_id = 2;
         }
         return $last_open_lesson_id;
     }
