@@ -23,6 +23,7 @@ Route::get('surveys/name', [\App\Http\Controllers\SurveyController::class, 'show
 Route::post('surveys', [\App\Http\Controllers\SurveyController::class, 'store']);
 Route::post('surveys1', [\App\Http\Controllers\SurveyController::class, 'store']);
 Route::post('surveys/info', [\App\Http\Controllers\SurveyController::class, 'info']);
+Route::get('surveys/program', [\App\Http\Controllers\SurveyController::class, 'program']);
 
 Route::post('register', [\App\Http\Controllers\RegisterController::class, 'register']);
 Route::post('login', [\App\Http\Controllers\RegisterController::class, 'login']);

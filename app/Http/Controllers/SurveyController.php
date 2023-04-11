@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProgramResource;
 use App\Http\Resources\SurveyCollection;
 use App\Http\Resources\SurveyResource;
 use Illuminate\Http\Request;
@@ -123,5 +124,11 @@ class SurveyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function program(Request $request)
+    {
+        $survey = Survey::query()->where('device_id', $request->device_id)->first();
+        return new ProgramResource($survey);
     }
 }
