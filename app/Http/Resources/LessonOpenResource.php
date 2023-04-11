@@ -19,8 +19,8 @@ class LessonOpenResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title_ru,
             'description' => $this->description_ru,
-            'img_small' => 'https://api.aikune.xyz/small_color/' . $this->id . '.png',
-            'img_big' => 'https://api.aikune.xyz/big/' . $this->id . '.png',
+            'img_small' => 'https://api.aikune.xyz/small_color/' . $this->id . '.jpg',
+            'img_big' => 'https://api.aikune.xyz/big/' . $this->id . '.jpg',
             'video_url' => 'https://api.aikune.xyz/video/' . $this->video_url . '.mp4',
             'duration' => $this->duration . 'мин',
         ];

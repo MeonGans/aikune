@@ -20,7 +20,7 @@ class LessonCloseResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title_ru,
             'description' => $this->description_ru,
-            'img_small' => 'https://api.aikune.xyz/small_black/' . $this->id . '.png',
+            'img_small' => 'https://api.aikune.xyz/small_black/' . $this->id . '.jpg',
             'duration' => $this->duration . 'мин',
             'opening_at' => $this->opening_at,
         ];
