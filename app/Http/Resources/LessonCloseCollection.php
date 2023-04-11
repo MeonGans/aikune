@@ -16,11 +16,15 @@ class LessonCloseCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        $id_first = $this->collection->first()->id;
-        return $this->collection->map(function ($item) use ($id_first){
-            $add_days = 1 + $item->id - $id_first;
-            $item->opening_at = Date::now()->add($add_days . ' day')->format('d.m');
-            return $item;
-        });
+        $id_first = $this->collection->first()->id ?? null;
+        if($id_first !== null){
+            return $this->collection->map(function ($item) use ($id_first){
+                $add_days = 1 + $item->id - $id_first;
+                $item->opening_at = Date::now()->add($add_days . ' day')->format('d.m');
+                return $item;
+            });
+        } else {
+            return [];
+        }
     }
 }
