@@ -31,6 +31,7 @@ Route::post('login', [\App\Http\Controllers\RegisterController::class, 'login'])
 Route::middleware('auth:api')->group( function () {
     Route::get('me', [\App\Http\Controllers\RegisterController::class, 'user']);
     Route::post('change', [\App\Http\Controllers\RegisterController::class, 'change']);
+    Route::post('change_password', [\App\Http\Controllers\RegisterController::class, 'change_password']);
     Route::get('lesson_open', [\App\Http\Controllers\LessonController::class, 'indexOpen']);
     Route::get('lesson_close', [\App\Http\Controllers\LessonController::class, 'indexClose']);
     Route::get('lesson/{lesson}', [\App\Http\Controllers\LessonController::class, 'show']);

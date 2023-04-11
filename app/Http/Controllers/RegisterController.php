@@ -62,13 +62,23 @@ class RegisterController extends Controller
     public function change(Request $request)
     {
         if ($request->email != "" and $request->name != "") {
-            $user = User::query()->find(Auth::user()->id)->update(['email' => $request->email, 'telegram' => $request->telegram]);
+            User::query()->find(Auth::user()->id)->update(['email' => $request->email, 'telegram' => $request->telegram]);
             Survey::query()->where('device_id', $request->device_id)->update(['name' => $request->name]);
         }
-//            if ($request->new_password == $request->re_password) {
-//                User::query()->find(Auth::user()->id)->update(['password' => $request->new_password]);
-//            }
-//        $request['password'] = Hash::make($request['password']);
+        return new UserResource(Auth::user());
+    }
+
+    public function change_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|confirmed|min:4',
+        ]);
+        if ($validator->fails()) {
+            return \response('Error', 422);
+        }
+        $request['password'] = Hash::make($request['password']);
+        User::query()->find(Auth::user()->id)->update(['password' => $request['password']]);
+
         return new UserResource(Auth::user());
     }
 
