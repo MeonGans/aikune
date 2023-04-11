@@ -9,6 +9,7 @@ use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Date\Date;
 
 class LessonController extends Controller
@@ -52,6 +53,32 @@ class LessonController extends Controller
         return new LessonOpenResource($lesson);
     }
 
+    public function rate(Lesson $lesson, Request $request)
+    {
+        switch ($request->value) {
+            case 'bad':
+                $lesson->update(['bad' => DB::raw('bad+1')]);
+                break;
+            case 'normal':
+                $lesson->update(['normal' => DB::raw('normal+1')]);
+                break;
+            case 'great':
+                $lesson->update(['great' => DB::raw('great+1')]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    //Фиксация просмотра лекции
+    public function view($lesson_id)
+    {
+        //Проверяем есть ли лекция в базе просмотренных, если нет - добавляем. Если есть - игнорируем
+        $check = Auth::user()->lessons->where('id', $lesson_id);
+        if(!$check->count()) {
+            Auth::user()->lessons()->attach([$lesson_id]);
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -80,6 +107,8 @@ class LessonController extends Controller
         $correct_user_id = Auth::id(); //Берём текущего пользователя
 
         $last_lesson = User::query()->find($correct_user_id)->lessons->last(); //Ищем последнюю пройденную лекцию этого пользователя
+        //dd($last_lesson = User::query()->find($correct_user_id)->lessons->sortByDesc('created_at')->toArray());
+
         $id_last_lesson = $last_lesson->id ?? null; //Фиксируем id найденной лекции, а если такой нет - ставим null
 
         if($id_last_lesson !== null) {

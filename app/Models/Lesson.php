@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     use HasFactory;
+    protected $fillable = ['bad', 'normal', 'great'];
 
     public function users()
     {
