@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'password' => 'required|confirmed|min:4',
         ]);
         if ($validator->fails()) {
-            return \response('Error', 422);
+            return \response('Error' . $request->password, 422);
         }
         $request['password'] = Hash::make($request['password']);
         User::query()->find(Auth::user()->id)->update(['password' => $request['password']]);

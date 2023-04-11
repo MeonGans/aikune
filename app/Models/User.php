@@ -29,9 +29,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-    ];
+//    protected $hidden = [
+//        'password',
+//    ];
 
     public function survey(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
