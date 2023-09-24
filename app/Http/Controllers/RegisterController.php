@@ -82,4 +82,9 @@ class RegisterController extends Controller
         return new UserResource(Auth::user());
     }
 
+    public function user_delete()
+    {
+        Auth::user()->delete();
+    }
+
 }
