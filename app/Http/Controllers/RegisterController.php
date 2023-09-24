@@ -84,7 +84,7 @@ class RegisterController extends Controller
 
     public function user_delete()
     {
-        Auth::user()->delete();
+        User::query()->find(Auth::user()->id)->delete();
     }
 
 }
