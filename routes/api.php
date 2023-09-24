@@ -37,5 +37,5 @@ Route::middleware('auth:api')->group( function () {
     Route::get('lesson/{lesson}', [\App\Http\Controllers\LessonController::class, 'show']);
     Route::post('lesson/{lesson}/rate', [\App\Http\Controllers\LessonController::class, 'rate']);
     Route::post('lesson/{lesson_id}/view', [\App\Http\Controllers\LessonController::class, 'view']);
-    Route::delete('delete', [\App\Http\Controllers\RegisterController::class, 'user_delete']);
+    Route::post('delete', [\App\Http\Controllers\RegisterController::class, 'user_delete']);
 });
